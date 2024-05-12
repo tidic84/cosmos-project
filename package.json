@@ -1,0 +1,17 @@
+{
+  "name": "cosomos-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "author": "Tidic",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.1.5"
+  },
+  "dependencies": {
+    "three": "^0.162.0"
+  }
+}
