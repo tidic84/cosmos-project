@@ -45,13 +45,13 @@ scene.add(ambientLight);
 
 const planets = [
     {name: 'Mercury', distance: 5, size: 0.5, texture: './assets/textures/mercury.jpg', atmosphereColor: 0x000000},
-    {name: 'Venus', distance: 7, size: 0.9, texture: './assets/textures/venus.jpg', atmosphereColor: 0xE6B417},
-    {name: 'Earth', distance: 10, size: 1, texture: './assets/textures/earth.jpg', atmosphereColor: 0x0088ff},
-    {name: 'Mars', distance: 12, size: 0.6, texture: './assets/textures/mars.jpg', atmosphereColor: 0xBA4F38},
-    {name: 'Jupiter', distance: 18, size: 2.2, texture: './assets/textures/jupiter.jpg', atmosphereColor: 0xF5EAC8},
-    {name: 'Saturn', distance: 25, size: 1.8, texture: './assets/textures/saturn.jpg', atmosphereColor: 0xBBBC7D},
-    {name: 'Uranus', distance: 29, size: 1.6, texture: './assets/textures/uranus.jpg', atmosphereColor: 0x1D8065},
-    {name: 'Neptune', distance: 32, size: 1.6, texture: './assets/textures/neptune.jpg', atmosphereColor: 0x103486},
+    {name: 'Venus', distance: 10, size: 0.9, texture: './assets/textures/venus.jpg', atmosphereColor: 0xE6B417},
+    {name: 'Earth', distance: 13, size: 1, texture: './assets/textures/earth.jpg', atmosphereColor: 0x0088ff},
+    {name: 'Mars', distance: 15, size: 0.6, texture: './assets/textures/mars.jpg', atmosphereColor: 0xBA4F38},
+    {name: 'Jupiter', distance: 25, size: 2.2, texture: './assets/textures/jupiter.jpg', atmosphereColor: 0xF5EAC8},
+    {name: 'Saturn', distance: 35, size: 1.8, texture: './assets/textures/saturn.jpg', atmosphereColor: 0xBBBC7D},
+    {name: 'Uranus', distance: 38, size: 1.6, texture: './assets/textures/uranus.jpg', atmosphereColor: 0x1D8065},
+    {name: 'Neptune', distance: 40, size: 1.6, texture: './assets/textures/neptune.jpg', atmosphereColor: 0x103486},
 ];
 
 planets.forEach(planetData => {
@@ -110,8 +110,8 @@ planets.forEach(planetData => {
     }
 
     if (planetData.name === 'Saturn') {
-        const ringTexture = new THREE.TextureLoader().load('saturn_ring_alpha.png');
-
+        const ringTexture = new THREE.TextureLoader().load('./assets/textures/saturn_ring_alpha.png');
+        
         const innerRadius = 3;
         const outerRadius = 5;
         const thetaSegments = 64;
@@ -121,10 +121,10 @@ planets.forEach(planetData => {
 
             ringGeometry.attributes.uv.array[i + 1] = (ringGeometry.attributes.uv.array[i + 1] * (outerRadius - innerRadius) + innerRadius) / outerRadius;
         }
-        const ringMaterial = new THREE.MeshBasicMaterial({
+        const ringMaterial = new THREE.MeshPhongMaterial({
             map: ringTexture,
             side: THREE.DoubleSide,
-            transparent: true,
+            opacity: 0.1,
         });
         const ring = new THREE.Mesh(ringGeometry, ringMaterial);
         ring.position.set(0, 0, 0);
@@ -132,6 +132,7 @@ planets.forEach(planetData => {
         planet.add(ring);
     }
 });
+
 const focusObject = new THREE.Object3D();
 scene.add(focusObject);
 
@@ -149,8 +150,8 @@ function animate() {
         planetData.object.position.x = planetData.distance * Math.cos(time / (2000) / planetData.distance);
         planetData.object.position.z = planetData.distance * Math.sin(time / (2000) / planetData.distance);
         if (planetData.name === 'Earth') {
-            planetData.object.children[0].position.x = 1.5 * Math.cos(Date.now() / 2000 / 1.5);
-            planetData.object.children[0].position.z = 1.5 * Math.sin(Date.now() / 2000 / 1.5);
+            planetData.object.children[0].position.x = 1.5 * Math.cos(time / 2000 / 1.5);
+            planetData.object.children[0].position.z = 1.5 * Math.sin(time / 2000 / 1.5);
 
             planetData.object.children[1].rotation.y += 0.0005;
         }

@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Système Solaire</title>
-        <script src="https://threejs.org/build/three.js"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div id="menu">
-            <button data-planet="Sun">Sun</button>
-            <button data-planet="Mercury">Mercury</button>
-            <button data-planet="Venus">Venus</button>
-            <button data-planet="Earth">Earth</button>
-            <button data-planet="Mars">Mars</button>
-            <button data-planet="Jupiter">Jupiter</button>
-            <button data-planet="Saturn">Saturn</button>
-            <button data-planet="Uranus">Uranus</button>
-            <button data-planet="Neptune">Neptune</button>
+<head>
+    <title>Cosmos Project</title>
+    <meta charset="UTF-8"/>
 
-            <input type="range" id="speed-slider" min="0" max="100" step="1" value="1">
-
-        </div>
-
-        <script src="./script.js" type="module"></script>
-    </body>
+    <link rel="stylesheet" href="index_style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="title">Cosmos Project</div>
+        <div class="description">Bienvenue dans le Cosmos Project, une exploration interactive du système solaire ne respectant pas grand chose en réalité, faite en ThreeJS.</div>
+        <div class="description">Cliquez sur le bouton ci-dessous pour commencer l'exploration</div>
+        <button class="button" id="startButton">Commencer</button>
+    </div>
+    <div class="credits">
+        <p>Cree par Sephanh Cedric</p>
+        <p>Textures des planetes fournies par <a href="https://www.solarsystemscope.com/textures/">solarsystemscope</a></p>
+        <p>Tutoriel et certaines fonctions par <a href="https://www.youtube.com/watch?v=FntV9iEJ0tU">Robot Bobby</a></p>
+    </div>
+    <script>
+        document.getElementById('startButton').addEventListener('click', function() {
+            window.location.href = 'main.html';
+        });
+    </script>
+</body>
 </html>
